@@ -1,0 +1,83 @@
+{
+  	"version": "2.0.0",
+	"options": {
+		"env": {
+			"ZEPHYR_GCC_PATH": "${env:HOME}/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin",
+			"VIRTUAL_ENV": "${env:HOME}/zephyrproject/.venv/bin",
+			"ZEPHYR_BASE": "${env:HOME}/zephyrproject/zephyr"
+		}
+	},
+	"tasks": [
+		{
+			"hide": false,
+			"label": "west_build_production",
+			"type": "shell",
+			"group": "build",
+			"command": "bash",
+			"args": [
+        		"-c",
+				"${VIRTUAL_ENV}/west build -b linum -p -- -DDTC_OVERLAY_FILE=boards/linum.overlay"
+      		],
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			// USING WITH MCUBOOT DISABLE
+			"hide": false,
+			"label": "west_build_debug",
+			"type": "shell",
+			"group": "build",
+			"command": "bash",
+			"args": [
+        		"-c",
+				"${VIRTUAL_ENV}/west build -b linum -p -- -DDTC_OVERLAY_FILE=boards/linum.overlay -DOVERLAY_CONFIG=debug.conf"
+      		],
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "west_flash_jlink",
+			"type": "shell",
+			"command": "${VIRTUAL_ENV}/west",
+			"args": [
+				"flash",
+				"--runner",
+				"jlink"
+			],
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "west_flash_stlink",
+			"type": "shell",
+			"command": "${VIRTUAL_ENV}/west",
+			"args": [
+				"flash",
+				"--runner",
+				"stm32cubeprogrammer"
+			],
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "seq_build_debug_and_jlink_flash",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"west_build_debug",
+				"west_flash_jlink"
+			]
+		},
+		{
+			"label": "seq_build_debug_and_stlink_flash",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"west_build_debug",
+				"west_flash_stlink"
+			]
+		},
+	]
+}

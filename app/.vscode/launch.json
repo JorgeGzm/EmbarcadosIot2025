@@ -1,0 +1,45 @@
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "J-Link - Debug",
+                "device": "stm32h753bi",
+                "cwd": "${workspaceFolder}",
+                "executable": "build/zephyr/zephyr.elf",
+                "interface": "swd",
+                "request": "launch",
+                "type": "cortex-debug",
+                "runToEntryPoint": "main",
+                "servertype": "jlink",
+                "liveWatch": {
+                    "enabled": true,
+                    "samplesPerSecond": 4
+                },
+                "preLaunchTask": "west_build_debug",
+            },
+            {
+                "name": "ST-Link - Debug",
+                "device": "stm32h753bi",
+                "cwd": "${workspaceFolder}",
+                "executable": "build/zephyr/zephyr.elf",
+                "request": "launch",
+                "type": "cortex-debug",
+                "runToEntryPoint": "main",
+                "servertype": "stlink",
+                "serverArgs": [
+                    "-s",
+                    "-m",
+                    "0",
+                    "-k",
+                    "--frequency",
+                    "24000",                    
+                ],
+                "liveWatch": {
+                    "enabled": true,
+                    "samplesPerSecond": 4
+                },
+                "preLaunchTask": "west_build_debug",
+                "showDevDebugOutput": "raw"
+            },
+        ]
+    }

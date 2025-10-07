@@ -1,0 +1,71 @@
+{
+    // ===========================================
+    // Python Env config
+    // ===========================================
+
+    "python.defaultInterpreterPath": "${env:HOME}/zephyrproject/.venv/bin/python3",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "terminal.integrated.env.linux": {
+        "ZEPHYR_BASE": "${env:HOME}/zephyrproject/zephyr",
+        "ZEPHYR_SDK_INSTALL_DIR": "${env:HOME}/zephyr-sdk-0.17.2"
+    },
+
+    // ===========================================
+    // CORTEX-DEBUG SETTINGS
+    // ===========================================
+
+    "cortex-debug.armToolchainPath": "${env:HOME}/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin",
+    "cortex-debug.openocdPath": "${env:HOME}/zephyr-sdk-0.17.2/sysroots/x86_64-pokysdk-linux/usr/bin/openocd",
+    "cortex-debug.gdbPath": "${env:HOME}/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
+    "cortex-debug.armToolchainPrefix": "arm-zephyr-eabi",
+    "cortex-debug.variableUseNaturalFormat": true,
+
+    // ===========================================
+    // C/C++ VISUAL SETTINGS
+    // ===========================================
+    
+    "cmake.configureOnOpen": false,
+    "C_Cpp.default.defines": [
+        "__CDT_PARSER__"
+    ],
+    "C_Cpp.default.forcedInclude": [
+        "${workspaceFolder}/build/zephyr/include/generated/zephyr/autoconf.h",
+    ],
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "${ZEPHYR_BASE}/include/**"
+    ],
+    "C_Cpp.default.mergeConfigurations": true, // TESTE
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+
+    // C/C++ inactive code style settings
+    "C_Cpp.inactiveRegionOpacity": 1,
+    "C_Cpp.inactiveRegionBackgroundColor": "#000000",
+    "C_Cpp.inactiveRegionForegroundColor": "#ffffff",
+
+    // ===========================================
+    // Editor
+    // ===========================================
+
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "terminal.integrated.scrollback": 50000,
+
+    // ===========================================
+    // CLANG-FORMAT CONFIGURATION (NOVO)
+    // ===========================================
+
+    // ===========================================
+    // ===========================================
+
+    "files.associations": {
+        "rtc_lib.h": "c",
+        "types.h": "c",
+        "typeinfo": "c"
+    },
+
+}

@@ -1,0 +1,40 @@
+# Available runners configured by board.cmake.
+runners:
+- openocd
+- jlink
+- stm32cubeprogrammer
+
+# Default flash runner if --runner is not given.
+flash-runner: openocd
+
+# Default debug runner if --runner is not given.
+debug-runner: openocd
+
+# Common runner configuration values.
+config:
+  board_dir: /home/jaga/zephyrproject/zephyr/boards/witte/linum
+  # Build outputs:
+  elf_file: zephyr.elf
+  hex_file: zephyr.hex
+  bin_file: zephyr.bin
+  # Host tools:
+  gdb: /home/jaga/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb-py
+  openocd: /home/jaga/zephyr-sdk-0.17.2/sysroots/x86_64-pokysdk-linux/usr/bin/openocd
+  openocd_search:
+    - /home/jaga/zephyr-sdk-0.17.2/sysroots/x86_64-pokysdk-linux/usr/share/openocd/scripts
+
+# Runner specific arguments
+args:
+  openocd:
+    - --cmd-load
+    - flash write_image erase
+    - --cmd-verify
+    - verify_image
+    - --target-handle=_CHIPNAME.cpu0
+  jlink:
+    - --dt-flash=y
+    - --device=STM32H753BI
+    - --speed=4000
+  stm32cubeprogrammer:
+    - --port=swd
+    - --reset-mode=hw

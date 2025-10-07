@@ -1,0 +1,64 @@
+cmake:
+  application:
+    configuration-dir: '/home/jaga/Workspace/Embarcados/EmbarcadosIot2025/app'
+    source-dir: '/home/jaga/Workspace/Embarcados/EmbarcadosIot2025/app'
+  board:
+    name: 'linum'
+    path:
+     - '/home/jaga/zephyrproject/zephyr/boards/witte/linum'
+    qualifiers: 'stm32h753xx'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/jaga/zephyrproject/zephyr/dts/bindings'
+    files:
+     - '/home/jaga/zephyrproject/zephyr/boards/witte/linum/linum.dts'
+     - 'boards/linum.overlay'
+    include-dirs:
+     - '/home/jaga/zephyrproject/modules/hal/ambiq/dts'
+     - '/home/jaga/zephyrproject/modules/hal/atmel/include'
+     - '/home/jaga/zephyrproject/modules/hal/bouffalolab/include'
+     - '/home/jaga/zephyrproject/modules/hal/bouffalolab/include/zephyr'
+     - '/home/jaga/zephyrproject/modules/hal/gigadevice/include'
+     - '/home/jaga/zephyrproject/modules/hal/microchip/include'
+     - '/home/jaga/zephyrproject/modules/hal/microchip/dts'
+     - '/home/jaga/zephyrproject/modules/hal/nuvoton/dts'
+     - '/home/jaga/zephyrproject/modules/hal/nxp/dts'
+     - '/home/jaga/zephyrproject/modules/hal/stm32/dts'
+     - '/home/jaga/zephyrproject/modules/hal/ti/dts'
+     - '/home/jaga/zephyrproject/zephyr/include'
+     - '/home/jaga/zephyrproject/zephyr/include/zephyr'
+     - '/home/jaga/zephyrproject/zephyr/dts/common'
+     - '/home/jaga/zephyrproject/zephyr/dts/vendor'
+     - '/home/jaga/zephyrproject/zephyr/dts/rx'
+     - '/home/jaga/zephyrproject/zephyr/dts/x86'
+     - '/home/jaga/zephyrproject/zephyr/dts/xtensa'
+     - '/home/jaga/zephyrproject/zephyr/dts/sparc'
+     - '/home/jaga/zephyrproject/zephyr/dts/riscv'
+     - '/home/jaga/zephyrproject/zephyr/dts/posix'
+     - '/home/jaga/zephyrproject/zephyr/dts/arm64'
+     - '/home/jaga/zephyrproject/zephyr/dts/arm'
+     - '/home/jaga/zephyrproject/zephyr/dts/arc'
+     - '/home/jaga/zephyrproject/zephyr/dts'
+    user-files:
+     - 'boards/linum.overlay'
+  kconfig:
+    extra-user-files:
+     - 'debug.conf'
+    files:
+     - '/home/jaga/zephyrproject/zephyr/boards/witte/linum/linum_defconfig'
+     - '/home/jaga/Workspace/Embarcados/EmbarcadosIot2025/app/prj.conf'
+     - '/home/jaga/Workspace/Embarcados/EmbarcadosIot2025/app/debug.conf'
+    user-files:
+     - '/home/jaga/Workspace/Embarcados/EmbarcadosIot2025/app/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/home/jaga/zephyr-sdk-0.17.2'
+  zephyr:
+    version: '4.2.0'
+    zephyr-base: '/home/jaga/zephyrproject/zephyr'
+version: '0.1.0'
+west:
+  command: '/home/jaga/zephyrproject/.venv/bin/west build -b linum -p -- -DDTC_OVERLAY_FILE=boards/linum.overlay -DOVERLAY_CONFIG=debug.conf'
+  topdir: '/home/jaga/zephyrproject'
+  version: '1.4.0'

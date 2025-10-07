@@ -1,0 +1,5 @@
+west:
+  command: /home/jaga/zephyrproject/.venv/bin/west build -b linum -p -- -DDTC_OVERLAY_FILE=boards/linum.overlay
+    -DOVERLAY_CONFIG=debug.conf
+  topdir: /home/jaga/zephyrproject
+  version: 1.4.0
